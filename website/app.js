@@ -23,7 +23,7 @@ function action (){
 const content = feelings.value;
   getData()
   .then(function (fetchedData) {
-    postData('/add' ,{date: newDate , temp: fetchedData.main.temp-273.15 , content : content})
+    postData('/add' ,{date: newDate , temp: fetchedData.main.temp , content : content})
     updateUI()
   })
 
@@ -32,9 +32,9 @@ const content = feelings.value;
 // fetching the data from openweathermap
 const getData = async () => {
 const zipValue= `?zip=${zip.value}`
-const keyValue= `&appid=${key}`
+const keyValue= `&appid=${key}&units=metric`
 
-const fetchData = await fetch(url +zipValue + keyValue)
+const fetchData = await fetch(url +zipValue + keyValue  )
 
     const fetchedData = await fetchData.json()
 return fetchedData
